@@ -60,6 +60,10 @@ const submitForm = async () => {
     formData.age = ''
     formData.gender = ''
     isSubmitted.value = false
+    window.location.reload()
+  } else {
+    console.error('form data is not fine');
+    isSubmitted.value = false
   }
 }
 </script>

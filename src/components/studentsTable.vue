@@ -11,7 +11,7 @@
             </thead>
             <tbody>
                 <tr v-for="(item, index) in props.students" :key="index">
-                    <th scope="row">{{ index }}</th>
+                    <th scope="row">{{ index + 1 }}</th>
                     <td>{{ item.name }}</td>
                     <td>{{ item.age }}</td>
                     <td>{{ item.gender }}</td>

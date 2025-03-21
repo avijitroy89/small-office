@@ -21,7 +21,7 @@
               <option value="female">Female</option>
             </select>
           </div>
-          <button type="submit" :disabled="isSubmitted" class="btn btn-primary">Submit</button>
+          <button type="submit" :disabled="isSubmitted" class="btn btn-primary">Create</button>
         </form>
       </div>
     </div>
@@ -60,7 +60,6 @@ const submitForm = async () => {
     formData.age = ''
     formData.gender = ''
     isSubmitted.value = false
-    window.location.reload()
   } else {
     console.error('form data is not fine');
     isSubmitted.value = false

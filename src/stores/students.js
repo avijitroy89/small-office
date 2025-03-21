@@ -27,6 +27,7 @@ export const useStudentStore = defineStore('student', () => {
 
       if (response.status === 200) {
         console.log('res post', response)
+        getAllStudents()
         return true
       }
     } catch (err) {

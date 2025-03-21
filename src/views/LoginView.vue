@@ -5,13 +5,13 @@
         <h3>Log In</h3>
         <form @submit.prevent="submitForm()">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <label for="exampleInputEmail1" class="form-label">User Name</label>
             <input type="text" v-model="formData.name" class="form-control" id="exampleInputEmail1"
               aria-describedby="emailHelp">
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Age</label>
-            <input type="number" v-model="formData.age" class="form-control" id="exampleInputPassword1">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="text" v-model="formData.password" class="form-control" id="exampleInputPassword1">
           </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
@@ -21,19 +21,27 @@
   </div>
 </template>
 <script setup>
-import { onMounted, reactive } from 'vue';
+import { computed, onMounted, reactive } from 'vue';
+import { useAuthStore } from '../stores/auth';
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const authStore = useAuthStore()
 const formData = reactive({
   name: '',
   password: '',
 })
-
+const userAuthData = computed(() => authStore.userAuthData)
 onMounted(() => {
   console.log('login')
 })
 
 
 const submitForm = () => {
-  console.log('form submitted')
+  if (formData.name === userAuthData.value.name && formData.password === userAuthData.value.password) {
+    authStore.loggedInUser()
+    router.push('/students')
+  }
 }
 </script>
 <style lang="scss" scoped>

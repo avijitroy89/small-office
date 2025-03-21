@@ -21,12 +21,13 @@ export const useStudentStore = defineStore('student', () => {
 
     try {
       if (dataSet.name === '' || dataSet.age === '' || dataSet.gender === '') {
-        return new Error('form data is not valid')
+        return false
       }
       const response = await axios.post('http://localhost:3000/addStudent', dataSet)
 
       if (response.status === 200) {
         console.log('res post', response)
+        getAllStudents()
         return true
       }
     } catch (err) {

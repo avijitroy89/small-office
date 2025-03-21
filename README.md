@@ -3,9 +3,10 @@
 This template should help get you started developing with Vue 3 in Vite.
 
 ## run the node server
-
-go to > cd server
-run the commend > node app.js
+```sh
+ cd server
+ node app.js
+```
 
 ## Project Setup
 

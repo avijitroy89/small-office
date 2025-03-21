@@ -27,6 +27,7 @@ npm run lint
 ```
 
 ## login credential for local
-
+```sh
 user: test
 password: test123
+```

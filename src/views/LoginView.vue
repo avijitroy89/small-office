@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col col-md-4 login-container">
+      <div class="col col-md-6 login-container">
         <h3>Log In</h3>
+
+        <div class="alert alert-danger" role="alert" v-if="hasLoginErr">
+          credential is not correct!
+        </div>
         <form @submit.prevent="submitForm()">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">User Name</label>
@@ -21,7 +25,7 @@
   </div>
 </template>
 <script setup>
-import { computed, onMounted, reactive } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
 import { useRouter } from 'vue-router'
 const router = useRouter()
@@ -32,6 +36,8 @@ const formData = reactive({
   password: '',
 })
 const userAuthData = computed(() => authStore.userAuthData)
+let hasLoginErr = ref(false)
+
 onMounted(() => {
   console.log('login')
 })
@@ -41,6 +47,8 @@ const submitForm = () => {
   if (formData.name === userAuthData.value.name && formData.password === userAuthData.value.password) {
     authStore.loggedInUser()
     router.push('/students')
+  } else {
+    hasLoginErr.value = true
   }
 }
 </script>
